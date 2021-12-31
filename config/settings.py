@@ -135,6 +135,10 @@ STATIC_ROOT = BASE_DIR / 'static'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+# 42 Intra API Config
+FT_API_UID = os.environ.get('FT_API_UID')
+FT_API_SECRET = os.environ.get('FT_API_SECRET')
+
 # AWS Config
 AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
 AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
