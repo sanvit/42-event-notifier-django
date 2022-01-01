@@ -18,9 +18,10 @@ class UserManager(BaseUserManager):
         user.save(using=self._db)
         return user
 
-    def create_superuser(self, username, password):
+    def create_superuser(self, username, ft_id, password):
         user = self.model(username=username)
         user.set_password(password)
+        user.ft_id = ft_id
         user.is_superuser = True
         user.is_admin = True
         user.is_staff = True
@@ -41,7 +42,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     ft_id = models.PositiveIntegerField(
         null=False, blank=False, unique=True)
     username = models.CharField(
-        max_length=20, blank=False, null=False, unique=True)
+        max_length=20, blank=False, null=False, unique=False)
     email = models.EmailField(max_length=255, null=True, blank=True)
     cursus = models.ManyToManyField(Cursus, related_name='user', blank=True)
     campus = models.ForeignKey(
@@ -53,8 +54,8 @@ class User(AbstractBaseUser, PermissionsMixin):
     date_joined = models.DateTimeField(auto_now_add=True)
     edited_at = models.DateTimeField(auto_now=True)
 
-    USERNAME_FIELD = "username"
-    REQUIRED_FIELDS = []
+    USERNAME_FIELD = "ft_id"
+    REQUIRED_FIELDS = ['username']
 
     def __str__(self):
         return f"{self.username} - {self.campus}"
