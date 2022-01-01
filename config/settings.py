@@ -140,6 +140,10 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # 42 Intra API Config
 FT_API_UID = os.environ.get('FT_API_UID')
 FT_API_SECRET = os.environ.get('FT_API_SECRET')
+FT_AUTH_API_UID = os.environ.get('FT_AUTH_API_UID', FT_API_UID)
+FT_AUTH_API_SECRET = os.environ.get('FT_AUTH_API_SECRET', FT_API_SECRET)
+FT_AUTH_REDIRECT_URI = os.environ.get(
+    'FT_AUTH_REDIRECT_URI', 'http://127.0.0.1:8000/intra_login')
 
 # AWS Config
 AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
