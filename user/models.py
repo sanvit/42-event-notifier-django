@@ -45,8 +45,7 @@ class User(AbstractBaseUser, PermissionsMixin):
         max_length=20, blank=False, null=False, unique=False)
     email = models.EmailField(max_length=255, null=True, blank=True)
     cursus = models.ManyToManyField(Cursus, related_name='user', blank=True)
-    campus = models.ForeignKey(
-        Campus, related_name='user', on_delete=models.SET_NULL, blank=True, null=True)
+    campus = models.ManyToManyField(Campus, related_name='user', blank=True)
     is_active = models.BooleanField(default=True)
     is_admin = models.BooleanField(default=False)
     is_superuser = models.BooleanField(default=False)
